@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Firewall Dashboard</title>
+    <meta http-equiv="refresh" content="5">
+    <style>
+        body { font-family: Arial; background: #111; color: #eee; }
+        h1 { color: #00ffcc; }
+        .box { margin: 20px; padding: 20px; background: #222; border-radius: 10px; }
+        button { background: red; color: white; border: none; padding: 5px 10px; }
+    </style>
+</head>
+<body>
+
+<h1>Firewall Dashboard</h1>
+
+<div class="box">
+    <h2>Blocked IPs</h2>
+    <ul>
+        {% for ip in ips %}
+        <li>
+            {{ ip }}
+            <form method="POST" action="/unblock" style="display:inline;">
+                <input type="hidden" name="ip" value="{{ ip }}">
+                <button type="submit">Unblock</button>
+            </form>
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+
+<div class="box">
+    <h2>Logs</h2>
+    <pre>
+{% for log in logs %}
+{{ log }}
+{% endfor %}
+    </pre>
+</div>
+
+</body>
+</html>
